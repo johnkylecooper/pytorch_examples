@@ -29,6 +29,10 @@ jobs:
         with:
           python-version: "3.13"
 
-      # Runs a single command using the runners shell
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+      # Runs ML pipeline
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Run ML Process
+        run: python breast_cancer.py
